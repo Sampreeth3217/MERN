@@ -1,0 +1,21 @@
+*{
+    padding: 0px;
+    border: 0px;
+
+}
+table{
+    text-align: center;
+    width:600px;
+    margin:auto;
+    margin:top;
+    font-size: 1.3rem;
+    color: rgb(2, 89, 89);
+    background-color: beige;
+    margin-bottom: 200px;
+}
+table,th,td
+{
+    border: 2px solid rgb(0, 0, 0);
+    border-collapse: collapse;
+    padding: 10px 15px
+}

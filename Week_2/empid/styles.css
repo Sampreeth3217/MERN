@@ -1,0 +1,52 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+.Header,.footer{
+    padding: 50px;
+    background-color: grey;
+    text-align: center;
+}
+.Header{
+    margin-bottom: 50px;
+}
+.footer{
+    margin-top: 50px;
+}
+
+div{
+    width: 300px;
+    box-shadow: 2px 2px 20px grey;
+    padding: 50px;
+    margin: auto;
+    text-align: center;
+    background-color: bisque;
+}
+img{
+    width: 100px;
+    
+    border-radius:20%;
+    margin: auto;
+}
+.about{
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+.para{
+    font-size: 0.7rem;
+}
+.interests{
+    font-size: 0.9rem;
+    font-weight: bold;
+}
+.views{
+    font-size: 0.7rem;
+}
+.about,.interests{
+    padding-top: 10px;
+}
+.Name{
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: cadetblue;
+}

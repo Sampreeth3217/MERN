@@ -1,0 +1,12 @@
+img{
+    width:150px;
+    height: 200px;
+    object-fit: contain;
+    
+}
+.card{
+    border: 1px solid black;
+    padding: 20px;
+    border-radius: 5px;
+    height: 550px;
+}

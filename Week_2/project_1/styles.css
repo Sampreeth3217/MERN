@@ -1,0 +1,21 @@
+body{
+    background-color: beige;
+    background-image: url(../../assets/bokeh-g11c99f966_1920.jpg);
+}
+#head1{
+    color: red;
+    letter-spacing: 10px;
+    text-align: center;
+    text-shadow: -2px 5px 11px yellow;
+    font-weight: 800;
+    font-style: bold;
+    font-size: 100px;
+    background-color: blanchedalmond;
+}
+.paras{
+    color: lightcoral;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    font-style: italic;
+    letter-spacing: -1px;
+    background-color: antiquewhite;
+}

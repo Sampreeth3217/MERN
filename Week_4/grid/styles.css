@@ -1,0 +1,59 @@
+.parent{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr ;
+    grid-template-rows: 1fr 1fr auto 1fr;
+    gap: 20px;
+}
+.header{
+    background-color: blueviolet;
+    grid-column: 1/4;
+}
+.footer{
+    background-color: cadetblue;
+    grid-column: 1/4;
+}
+.sidebar{
+    background-color: crimson;
+    grid-column: 1/2;
+    grid-row: 2/4;
+
+}
+.sidebar img{
+    height: auto;
+    max-width: 100%;
+}
+.content1{
+    background-color: blue;
+    grid-column: 2/4;
+    grid-row: 2/3;
+}
+.content2{
+    background-color: yellow;
+    grid-column: 2/3;
+    grid-row: 3/4;
+}
+.content3{
+    background-color: orange;
+    grid-column: 3/4;
+    grid-row: 3/4;
+}
+
+@media screen and (max-width:576px){
+    .sidebar{
+        grid-column: 1/4;
+        grid-row: 2/3;
+    }
+    .content1{
+        grid-column: 1/4;
+        grid-row: 3/4;
+    }
+    .content2{
+        grid-column: 1/4;
+        grid-row: 4/5;
+    }
+    .content3{
+        grid-column: 1/4;
+        grid-row: 5/6;
+    }
+    
+}

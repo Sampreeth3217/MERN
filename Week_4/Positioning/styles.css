@@ -1,0 +1,20 @@
+.parent{
+    width: 600px;
+    height: 600px;
+    margin: 100px;
+    background-color: rgb(0, 229, 255);
+}
+.child1{
+    width: 100px;
+    height: 100px;
+    background-color: red;
+    position: absolute;
+    top: 120px;
+    left: 120px;
+
+}
+.child2{
+    width: 100px;
+    height: 100px;
+    background-color: rgb(25, 0, 255)
+}

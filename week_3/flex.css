@@ -1,0 +1,27 @@
+.parent{
+    max-width: 600px;
+    height: 600px;
+    border: 2px solid black;
+    /* add flex container */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    flex-grow: 1
+;
+}
+.child1,.child2,.child3{
+    width: 100px;
+    height:100px;
+}
+.child1{
+    background-color: brown;
+    flex-grow: 1;
+}
+.child2{
+    background-color: grey;
+    flex-grow: 2;
+}
+.child3{
+    background-color: darkred;
+    flex-grow: 3;
+}
