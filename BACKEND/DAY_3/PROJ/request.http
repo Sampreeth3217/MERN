@@ -1,5 +1,10 @@
 ###
 get http://localhost:3000/user-api/users
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1hZGh1IiwiaWF0IjoxNzIwODYwNTk2LCJleHAiOjE3MjA4NjE3OTZ9.sTXqEhvavb2uOn1XuKzvkOBaHY8fkxg4jew4dycwfnA
+
+
+get http://localhost:3000/user-api/users/madhu
+
 
 ###
 post http://localhost:3000/user-api/users
