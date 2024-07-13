@@ -2,6 +2,7 @@ const express = require('express');
 const UserApp = express.Router();
 const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const tokenVerify = require('../middlewares/tokenVerify');
 
 // Middleware
 UserApp.use(express.json());
@@ -19,7 +20,7 @@ const middleware_2 = (req, res, next) => {
 UserApp.use(middleware_1);
 UserApp.use(middleware_2);
 
-UserApp.get('/users', async (req, res) => {
+UserApp.get('/users', tokenVerify, async (req, res) => {
   try {
     const usersCollection = req.app.get('usersCollection');
     let usersList = await usersCollection.find().toArray();
@@ -29,7 +30,7 @@ UserApp.get('/users', async (req, res) => {
   }
 });
 
-UserApp.get('/users/:id', async (req, res) => {
+UserApp.get('/users/:id', tokenVerify, async (req, res) => {
   try {
     const usersCollection = req.app.get('usersCollection');
     const idOfUrl = Number(req.params.id);
@@ -83,8 +84,8 @@ UserApp.post('/login', async (req, res) => {
       if (result == false) {
         res.send({ message: "Invalid Password" });
       } else {
-        // create JWT token
-        let signedToken = jwt.sign({ username: userCred.username }, 'sampreeth', { expiresIn: '20m' });
+        // create JWT token with 20 seconds expiration
+        let signedToken = jwt.sign({ username: userCred.username }, 'sampreeth', { expiresIn: '100s' });
         // send response
         res.send({ message: "Login Successful", payload: { username: userCred.username, token: signedToken } });
       }
@@ -95,7 +96,7 @@ UserApp.post('/login', async (req, res) => {
   }
 });
 
-UserApp.put('/users/:id', async (req, res) => {
+UserApp.put('/users/:id', tokenVerify, async (req, res) => {
   try {
     const usersCollection = req.app.get('usersCollection');
     let updatedUser = req.body;
@@ -106,7 +107,7 @@ UserApp.put('/users/:id', async (req, res) => {
   }
 });
 
-UserApp.delete('/users/:id', async (req, res) => {
+UserApp.delete('/users/:id', tokenVerify, async (req, res) => {
   try {
     const usersCollection = req.app.get('usersCollection');
     await usersCollection.deleteOne({ id: Number(req.params.id) });
