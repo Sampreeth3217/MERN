@@ -30,11 +30,11 @@ UserApp.get('/users', tokenVerify, async (req, res) => {
   }
 });
 
-UserApp.get('/users/:id', tokenVerify, async (req, res) => {
+UserApp.get('/users/:username', tokenVerify, async (req, res) => {
   try {
     const usersCollection = req.app.get('usersCollection');
-    const idOfUrl = Number(req.params.id);
-    let user = await usersCollection.findOne({ id: { $eq: idOfUrl } });
+    const username = req.params.username;
+    let user = await usersCollection.findOne({ username: username });
     if (user) {
       res.send({ message: "one_user", payload: user });
     } else {
@@ -85,7 +85,7 @@ UserApp.post('/login', async (req, res) => {
         res.send({ message: "Invalid Password" });
       } else {
         // create JWT token with 20 seconds expiration
-        let signedToken = jwt.sign({ username: userCred.username }, 'sampreeth', { expiresIn: '100s' });
+        let signedToken = jwt.sign({ username: userCred.username }, 'sampreeth', { expiresIn: '20m' });
         // send response
         res.send({ message: "Login Successful", payload: { username: userCred.username, token: signedToken } });
       }
