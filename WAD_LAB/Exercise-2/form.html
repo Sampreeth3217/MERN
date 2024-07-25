@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HTML Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        .form-container {
+            margin: 50px;
+        }
+        .form-container h1 {
+            font-size: 24px;
+        }
+        .form-container label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        .form-container input[type="text"],
+        .form-container input[type="email"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .form-container input[type="radio"] {
+            margin: 0 5px 0 0;
+        }
+        .form-container .radio-group {
+            margin: 10px 0;
+        }
+        .form-container input[type="submit"],
+        .form-container input[type="reset"] {
+            padding: 10px 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .form-container input[type="submit"]:hover,
+        .form-container input[type="reset"]:hover {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="form-container">
+        <h1>HTML form</h1>
+        <form>
+            <label for="firstName">First name:</label>
+            <input type="text" id="firstName" name="firstName">
+            
+            <label for="lastName">Last name:</label>
+            <input type="text" id="lastName" name="lastName">
+            
+            <label for="email">E-mail:</label>
+            <input type="email" id="email" name="email">
+            
+            <div class="radio-group">
+                <label>
+                    <input type="radio" name="gender" value="male"> Male
+                </label>
+                <label>
+                    <input type="radio" name="gender" value="female"> Female
+                </label>
+            </div>
+            
+            <input type="submit" value="Submit">
+            <input type="reset" value="Reset">
+        </form>
+    </div>
+
+</body>
+</html>

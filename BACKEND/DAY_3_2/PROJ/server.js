@@ -17,11 +17,15 @@ mClient.connect()
 
 const userApp = require('./APIs/UserAPI');
 const productsApp = require('./APIs/ProductsAPI');
-//handling ivalid paths
-app.use('*',(req,res,next)=>{
-  res.send({message:'Invalid path $eq'})
-})
-
 
 app.use('/user-api', userApp);
 app.use('/product-api', productsApp);
+//handling ivalid paths
+app.use('*',(req,res,next)=>{
+  console.log(req.status)
+  res.send({message:'Invalid path'})
+})
+
+app.use((err,req,res,next)=>{
+  res.send({message:"Error Occured",errMessage:err.message})
+})

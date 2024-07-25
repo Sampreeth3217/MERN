@@ -3,7 +3,7 @@ const UserApp = express.Router();
 const bcryptjs = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const tokenVerify = require('../middlewares/tokenVerify');
-
+const expressAsyncHandler=require('express-async-handler')
 // Middleware
 UserApp.use(express.json());
 
@@ -20,17 +20,15 @@ const middleware_2 = (req, res, next) => {
 UserApp.use(middleware_1);
 UserApp.use(middleware_2);
 
-UserApp.get('/users', tokenVerify, async (req, res) => {
-  try {
+UserApp.get('/users', tokenVerify, expressAsyncHandler(async (req, res) => {
+  
     const usersCollection = req.app.get('usersCollection');
     let usersList = await usersCollection.find().toArray();
     res.send({ message: "users", payload: usersList });
-  } catch (error) {
-    res.status(500).send({ message: "Error fetching users", error });
-  }
-});
+   
+}));
 
-UserApp.get('/users/:username', tokenVerify, async (req, res) => {
+UserApp.get('/users/:username', tokenVerify, expressAsyncHandler(async (req, res) => {
   try {
     const usersCollection = req.app.get('usersCollection');
     const username = req.params.username;
@@ -43,9 +41,9 @@ UserApp.get('/users/:username', tokenVerify, async (req, res) => {
   } catch (error) {
     res.status(500).send({ message: "Error fetching user", error });
   }
-});
+}));
 
-UserApp.post('/users', async (req, res) => {
+UserApp.post('/users', expressAsyncHandler(async (req, res) => {
   try {
     const usersCollection = req.app.get('usersCollection');
     let newUser = req.body;
@@ -68,9 +66,9 @@ UserApp.post('/users', async (req, res) => {
     console.error("Error creating user:", error);
     res.status(500).send({ message: "Error creating user", error });
   }
-});
+}));
 
-UserApp.post('/login', async (req, res) => {
+UserApp.post('/login', expressAsyncHandler(async (req, res) => {
   try {
     const usersCollection = req.app.get('usersCollection');
     const userCred = req.body;
@@ -85,7 +83,7 @@ UserApp.post('/login', async (req, res) => {
         res.send({ message: "Invalid Password" });
       } else {
         // create JWT token with 20 seconds expiration
-        let signedToken = jwt.sign({ username: userCred.username }, 'sampreeth', { expiresIn: '20m' });
+        let signedToken = jwt.sign({ username: userCred.username }, 'sampreeth', { expiresIn: '24h' });
         // send response
         res.send({ message: "Login Successful", payload: { username: userCred.username, token: signedToken } });
       }
@@ -94,20 +92,20 @@ UserApp.post('/login', async (req, res) => {
     console.error("Error during login:", error);
     res.status(500).send({ message: "Error during login", error });
   }
-});
+}));
 
-UserApp.put('/users/:id', tokenVerify, async (req, res) => {
+UserApp.put('/users/:id', tokenVerify, expressAsyncHandler(async (req, res) => {
   try {
     const usersCollection = req.app.get('usersCollection');
-    let updatedUser = req.body;
-    await usersCollection.updateOne({ id: Number(req.params.id) }, { $set: updatedUser });
-    res.send({ message: "user updated", payload: updatedUser });
+    let ModifiedUser = req.body;
+    await usersCollection.updateOne({ id: Number(req.params.id) }, { $set: ModifiedUser });
+    res.send({ message: "user updated", payload: ModifiedUser });
   } catch (error) {
     res.status(500).send({ message: "Error updating user", error });
   }
-});
+}));
 
-UserApp.delete('/users/:id', tokenVerify, async (req, res) => {
+UserApp.delete('/users/:id', tokenVerify,expressAsyncHandler( async (req, res) => {
   try {
     const usersCollection = req.app.get('usersCollection');
     await usersCollection.deleteOne({ id: Number(req.params.id) });
@@ -115,6 +113,6 @@ UserApp.delete('/users/:id', tokenVerify, async (req, res) => {
   } catch (error) {
     res.status(500).send({ message: "Error deleting user", error });
   }
-});
+}));
 
 module.exports = UserApp;
