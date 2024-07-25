@@ -12,10 +12,10 @@ function App() {
     {
       path: '/',
       element: <RootLayout />,
-      errorElement:<RoutingError />,
+      errorElement: <RoutingError />,
       children: [
         {
-          path: '',
+          index: true,
           element: <Home />,
         },
         {
