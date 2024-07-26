@@ -2,12 +2,13 @@ const express = require('express');
 const app = express();
 const { MongoClient } = require('mongodb');
 
-let mClient = new MongoClient('mongodb://127.0.0.1:27017');
+// let mClient = new MongoClient('mongodb://127.0.0.1:27017');
+let mClient = new MongoClient("mongodb+srv://samp:samp@cluster0.ssm7syn.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
 
 mClient.connect()
   .then((connectionObj) => {
     console.log("DB connection Successful");
-    const fsddb = connectionObj.db('NEWDB');
+    const fsddb = connectionObj.db('sampdb');
     const usersCollection = fsddb.collection('users');
     app.set('usersCollection', usersCollection);
     const PORT = 3000;
