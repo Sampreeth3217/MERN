@@ -14,17 +14,19 @@ mClient.connect()
 
     const usersCollection = fsddb.collection('users');
     const productsCollection = fsddb.collection('products');
+    const cartCollection = fsddb.collection('cart');
 
 
 
     app.set('usersCollection', usersCollection);
     app.set('productsCollection', productsCollection);
+    app.set('cartCollection', cartCollection);
 
 
     const PORT = process.env.PORT_No;
 
 
-    
+
     app.listen(PORT, () => console.log(`HTTP server started on port ${PORT}`));
   })
   .catch(err => console.log("Error in connection", err));

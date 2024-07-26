@@ -115,4 +115,18 @@ UserApp.delete('/users/:id', tokenVerify,expressAsyncHandler( async (req, res) =
   }
 }));
 
+
+
+UserApp.put('/add-to-cart/:username',expressAsyncHandler(
+  async (req, res) => {
+    let cartCollection=req.app.get('cartCollection');
+    let  usernameFromUrl=req.params.username;
+    let cart=req.body;
+    // console.log(cart);
+    await  cartCollection.updateOne(
+      { username: usernameFromUrl },
+      {$push:{products:cart}}
+    )
+  }
+))
 module.exports = UserApp;
