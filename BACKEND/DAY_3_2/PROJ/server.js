@@ -1,17 +1,30 @@
 const express = require('express');
 const app = express();
 const { MongoClient } = require('mongodb');
-
+require('dotenv').config()//process.env.SECRET_KEY
 // let mClient = new MongoClient('mongodb://127.0.0.1:27017');
-let mClient = new MongoClient("mongodb+srv://samp:samp@cluster0.ssm7syn.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0");
+let mClient = new MongoClient(process.env.DB_URL);
 
 mClient.connect()
   .then((connectionObj) => {
     console.log("DB connection Successful");
     const fsddb = connectionObj.db('sampdb');
+
+
+
     const usersCollection = fsddb.collection('users');
+    const productsCollection = fsddb.collection('products');
+
+
+
     app.set('usersCollection', usersCollection);
-    const PORT = 3000;
+    app.set('productsCollection', productsCollection);
+
+
+    const PORT = process.env.PORT_No;
+
+
+    
     app.listen(PORT, () => console.log(`HTTP server started on port ${PORT}`));
   })
   .catch(err => console.log("Error in connection", err));

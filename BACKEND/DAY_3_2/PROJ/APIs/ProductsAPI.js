@@ -1,34 +1,24 @@
 const express = require('express');
+const expressAsyncHandler = require('express-async-handler');
 const ProductsApp = express.Router();
 
 // Middleware
 ProductsApp.use(express.json());
 
-// Test data
-let productList = [
-  { id: 1, name: 'Product_1' },
-  { id: 2, name: 'Product_2' }
-];
 
-ProductsApp.get('/products', (req, res) => {
-  res.send({
-    message: 'productsList',
-    payload: productList
-  });
-});
 
-ProductsApp.get('/products/:id', (req, res) => {
-  let id = req.params.id;
-  let product = productList.find(product => product.id == id);
-  if (product) {
-    res.send({
-      message: 'productDetails',
-      payload: product
-    });
-  } else {
-    res.send({ message: 'product not found' });
-  }
-});
+ProductsApp.get('/products', expressAsyncHandler( async (req, res) => {
+  let productsCollection=req.app.get('productsCollection')
+  let productList=await  productsCollection.find().toArray()
+  res.send({message:'products',payload:productList})
+}));
+
+ProductsApp.get('/products/:id',expressAsyncHandler(async (req, res) => {
+  let productsCollection=req.app.get('productsCollection');
+  let  productID=Number(req.params.id)
+  let product=await productsCollection.findOne({id:productID})
+  res.send({message:'product',payload:product})
+}));
 
 ProductsApp.post('/products', (req, res) => {
   let product = req.body;

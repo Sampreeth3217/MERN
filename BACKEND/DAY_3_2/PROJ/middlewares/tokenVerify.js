@@ -7,7 +7,7 @@ const tokenVerify = (req, res, next) => {
 
   const token = bearerToken.split(' ')[1];
   try {
-    jwt.verify(token, 'sampreeth');
+    jwt.verify(token, process.env.SECRET_KEY );
     next();
   } catch (err) {
     return res.send({ message: "Token expired, please login again" });

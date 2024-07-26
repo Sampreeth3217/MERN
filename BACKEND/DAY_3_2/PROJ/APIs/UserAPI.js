@@ -83,7 +83,7 @@ UserApp.post('/login', expressAsyncHandler(async (req, res) => {
         res.send({ message: "Invalid Password" });
       } else {
         // create JWT token with 20 seconds expiration
-        let signedToken = jwt.sign({ username: userCred.username }, 'sampreeth', { expiresIn: '24h' });
+        let signedToken = jwt.sign({ username: userCred.username }, process.env.SECRET_KEY , { expiresIn: '24h' });
         // send response
         res.send({ message: "Login Successful", payload: { username: userCred.username, token: signedToken } });
       }

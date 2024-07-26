@@ -13,8 +13,8 @@ post http://localhost:3000/user-api/users
 Content-Type: application/json
 
 {
-    "name": "madhu abcd",
-    "username": "madhuC",
+    "name": "madhu abcde",
+    "username": "madhuCab",
     "password": "madhuSC",
     "email": "madhu@gmail.com"
 }
@@ -47,3 +47,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1hZ
 delete http://localhost:3000/user-api/users/2
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6Im1hZGh1U0MiLCJpYXQiOjE3MjA4Njc0ODksImV4cCI6MTcyMDk1Mzg4OX0.6saMslggbI-TxmXaCJ5JynVDOZ-JBEuT_wjzMfgkPnI
 ###
+
+
+
+get http://localhost:3000/product-api/products/10
